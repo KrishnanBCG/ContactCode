@@ -1,0 +1,87 @@
+<div class="sidecontact ">
+
+    <ul class="list">
+        <!-----------------------------contact sidemenu-------------------------------------------------------------->
+        <li class="list-item" >
+            <i class="fa-solid fa-address-book" (click)="SideNavToggled()" style="cursor: pointer;">
+
+            </i>
+            <span [matMenuTriggerFor]="contact">
+                <a href="#">
+                    <b>Contact</b>
+                </a>
+                <mat-menu #contact="matMenu">
+                    <button mat-menu-item  data-toggle="modal" data-target="#contact">
+                        Create Contact
+                    </button>
+                    <button mat-menu-item data-toggle="modal" data-target="#inactivecontact">
+                        In-Active Contact
+                    </button>
+                </mat-menu>
+            </span>
+
+
+        </li>
+        <!-----------------------------Tags sidemenu-------------------------------------------------------------->
+        <li class="list-item">
+            <i class="fa-solid fa-tag" (click)="SideNavToggled()">
+
+            </i>
+            <span [matMenuTriggerFor]="animals">
+                <a href="#" >
+                    <b>Tags</b>
+                </a>
+                <mat-menu #animals="matMenu">
+                    <button mat-menu-item data-toggle="modal" data-target="#createtagspopup" (click)="saveProcess()">
+                        Create Tags
+                    </button>
+                    <button mat-menu-item data-bs-toggle="modal" data-bs-target="#viewtagspopup">
+                        View Tags
+                    </button>
+                </mat-menu>
+            </span>
+        </li>
+        <!-----------------------------Folder sidemenu-------------------------------------------------------------->
+        <li class="list-item">
+            <i class="fa-solid fa-folder" (click)="SideNavToggled()"></i>
+            <span>
+                <a href="#" data-toggle="modal" data-target="#folder">
+                    <b>Folder</b>
+                </a>
+            </span>
+        </li>
+
+        <!-----------------------------Relation sidemenu-------------------------------------------------------------->
+        <li class="list-item">
+            <i class="material-icons" (click)="SideNavToggled()" style="font-size: 25px; cursor: pointer;">groups</i>
+            <span>
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <b>Relation</b>
+                </a>
+            </span>
+        </li>
+        <!-----------------------------Login sidemenu-------------------------------------------------------------->
+        <li class="list-item" id="login">
+            <i class="fa-solid fa-right-from-bracket" (click)="SideNavToggled()"></i>
+            <span>
+                <a href="#">
+                    <b>Logout</b>
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+<!-------------------------------------------------Contact popup------------------------------------------------------------>
+<app-create-contact [saveshowSave] = "notSave"></app-create-contact>
+<!------------------------------------------------- Tags popup------------------------------------------------------------>
+<app-create-tags></app-create-tags>
+<!-------------------------------------------------Folder popup------------------------------------------------------------>
+<app-create-folder></app-create-folder>
+<!------------------------------------------------------------------------------------------------------------->
+<app-inactivecontact></app-inactivecontact>
+<!------------------------------------------------------------------------------------------------------------->
+<app-relation></app-relation>
+
+
+
+

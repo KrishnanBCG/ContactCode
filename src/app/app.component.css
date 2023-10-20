@@ -1,0 +1,89 @@
+app-headerbar{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    height: 4rem;
+}
+
+main{
+    position:absolute;
+    width: 100%;
+    top: 4rem; 
+    /* z-index: 3; */
+}
+
+.border{
+    border: 1px solid black;
+}
+
+app-sidenavbar{
+    position: absolute;
+    left: 0rem;
+    width: 50px;
+    height:calc(100vh - 4rem);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    background-color: black;
+    border-top:1px solid ;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+label{
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+}
+#contacttitlepopup{
+    margin-left: 35%;
+    font-size: 20px;
+}
+#contactsavebutton{
+    background-color: #A8DF8E;
+    margin-right: 43%;
+}
+
+.list-open{
+    width: 150px;
+}
+
+.box{
+    height: 50px;
+    display: flex;
+    cursor: pointer;
+    width: 500px;
+    padding: 10px 20px;
+    margin-top: 2%;
+    margin-left: 34%;
+    background: #fff;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+/* .box:hover input{
+    width: 400px;
+} */
+.box input{
+    width: 500px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas{
+    color: #1daf;
+    font-size: 18px;
+}
+.table-container{
+    margin-top: 3%;
+    width: 85%;
+    margin-left: 11%;
+    background-color: white;
+    box-shadow: 1px 2px 20px ;
+    overflow: scroll;
+    position: fixed;
+    height: 75%;
+}
+table{
+    width: 100%;
+}

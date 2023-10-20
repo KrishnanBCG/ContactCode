@@ -1,0 +1,19 @@
+.label{
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+}
+#contacttitlepopup{
+    margin-left: 35%;
+    font-size: 20px;
+}
+#contactsavebutton{
+    background-color: #A8DF8E;
+    margin-right: 43%;
+}
+#tagchips{
+    display: flex;
+    width: 450px;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+}
