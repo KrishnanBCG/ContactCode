@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { InactivecontactComponent } from './inactivecontact/inactivecontact.component';
 import { RelationComponent } from './relation/relation.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HttpClientModule,
     MatChipsModule,
     MatSlideToggleModule,
+    DropdownModule
     ],
   providers: [],
   bootstrap: [AppComponent]

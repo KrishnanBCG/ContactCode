@@ -1,13 +1,13 @@
 
 <div class="container-fluid g-0">
   <app-headerbar (sideNavToggled)="sideNavStatus =$event" 
-  [sideNavStatus]="sideNavStatus" [ngClass]="{'list-open':sideNavStatus}"></app-headerbar>
+  [sideNavStatus]="sideNavStatus"></app-headerbar>
   <main>
     <div>
-      <app-sidenavbar (sideNavToggled)="sideNavStatus =$event" [sideNavStatus]="sideNavStatus" [ngClass]="{'list-open':sideNavStatus}"></app-sidenavbar>
+      <app-sidenavbar (sideNavToggled)="sideNavStatus =$event"  [ngClass]="{'list-open':sideNavStatus}"></app-sidenavbar>
     </div>
 <!--------------------------------------------------search bar------------------------------------------------------------>
-    <div class="box">
+    <div class="box" >
       <input type="text" [(ngModel)]="searchQuery" (input)="onInputChange()" placeholder="Search...">
       <a href="#">
         <i class="fas fa-search"></i>

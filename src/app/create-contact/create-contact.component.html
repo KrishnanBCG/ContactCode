@@ -17,34 +17,34 @@
                     <div class="contact">
                         <div>
                             <label class="label">Name<sup><b>*</b></sup></label>
-                            <input type="text" formControlName="name" class="contactDetails" placeholder="Enter Name" required>
-                            <mat-slide-toggle formControlName="status" style="margin-left: 15px;">Active</mat-slide-toggle>
+                            <input type="text" formControlName="name" class="contactDetails" style="width: 35%;" placeholder="Enter Name" required>
+                            <mat-slide-toggle formControlName="status" style="margin-left: 2%;">Active</mat-slide-toggle>
                         </div>
                         <div>
                             <label class="label">Phonenumber 1* : </label>
-                            <input type="text" class="contactDetails" placeholder="Enter Phonenumber 1 " formControlName="phone">
+                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter Phonenumber 1 " formControlName="phone">
                         </div>
                         <div>
                             <label class="label">Phonenumber 2 </label>
-                            <input type="text" class="contactDetails" placeholder="Enter Phonenumber 2 " formControlName="phone1">
+                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter Phonenumber 2 " formControlName="phone1">
                         </div>
 
                         <div>
                             <label class="label">E-mail 1 </label>
-                            <input type="text" class="contactDetails" placeholder="Enter E-mail 1" formControlName="email">
+                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter E-mail 1" formControlName="email">
                         </div>
                         <div>
                             <label class="label">E-mail 2</label>
-                            <input type="text" class="contactDetails" placeholder="Enter E-mail 2" formControlName="email1">
+                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter E-mail 2" formControlName="email1">
                         </div>
-                        <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
+                        <div style="display: flex; flex-direction: row;  align-items: center">
 
                             <label class="label">Address 1 <sup><b>*</b></sup></label>
-                            <textarea formControlName="address" style="height: 75px; resize: horizontal; width: 161px;"></textarea>
+                            <textarea formControlName="address" style="height: 75px; resize: horizontal; width: 36%;"></textarea>
                         </div>
                         <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
                             <label class="label">Address 2 </label>
-                            <textarea style="height: 75px; resize: horizontal; width: 161px;" formControlName="address1">
+                            <textarea style="height: 75px; resize: horizontal; width: 36%" formControlName="address1">
                             </textarea>
                         </div>
 
@@ -59,17 +59,17 @@
 
                         <div style="display: flex;">
                             <label class="label">Relation Tags</label>
-                            <select [(ngModel)]="RelationTags" style="height: 21px;" formControlName="reltag">
+                            <select [(ngModel)]="RelationTags" style="height: 3%; margin-left: 6%;" formControlName="reltag">
                                 <option>---select---</option>
                                 <option *ngFor="let relt of rtag" [value]="relt.tag_name">{{ relt.tag_name }}</option>
                             </select>
                             <div >
-                            <input type="text" #test style="border: 1px solid transparent;" value="{{Relation}}'s-{{RelationTags}}" readonly formControlName="relname">
+                            <input type="text" #test style="border: 1px solid transparent; width: 75%;" value="{{Relation}}'s-{{RelationTags}}" readonly formControlName="relname">
                             </div>
                         </div>
                         <div>
                             <label class="label">Folder : </label>
-                            <select formControlName="folder">
+                            <select formControlName="folder" style="height: 3%; margin-left: 6%;">
                                 <option>--select--</option>
                                 <option *ngFor="let folder of foldername" [value]="folder.tag_name">{{ folder.tag_name }}</option>
                             </select>
@@ -78,14 +78,14 @@
                         <div id="contacttags" style="display: flex; flex-direction: column;">
                             <div style="display: flex;">
                                 <label style="display: inline-block; width: 200px;" class="label"> Tags : <sup><b>*</b></sup></label>
-                                <mat-chip-grid #taglist formControlName="tags" >
+                                <mat-chip-grid #taglist formControlName="tags">
                                     <div style="display: flex; flex-direction: column; height: auto; justify-content: center; align-items: center;">
-                                    <div style="display: flex; width: 200px;">
-                                        <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style="width:100px; border:1px solid black" />
+                                    <div style="display: flex;">
+                                        <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style= "border: 1px solid black;margin-left: -54px;" />
                                         <button type="button" id="newTags" class="btn btn-primary"
                                                 data-toggle="modal" data-target="#createtagspopup">New</button>
                                     </div><br>
-                                    <div style="display: flex; width: 450px; flex-wrap: wrap;">
+                                    <div style="display: flex; width: 80%;flex-wrap: wrap;">
                                         <mat-chip-row *ngFor="let tag of Tags; let i = index " [removable]="removable" (removed)="remove(tag)" >
                                                 {{ tag }}
                                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
