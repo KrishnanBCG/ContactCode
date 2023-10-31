@@ -30,7 +30,8 @@ import { InactivecontactComponent } from './inactivecontact/inactivecontact.comp
 import { RelationComponent } from './relation/relation.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ViewtagComponent,
     InactivecontactComponent,
     RelationComponent,
+    
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA, // Add CUSTOM_ELEMENTS_SCHEMA to suppress the message for Web Components
@@ -70,7 +72,9 @@ import { DropdownModule } from 'primeng/dropdown';
     HttpClientModule,
     MatChipsModule,
     MatSlideToggleModule,
-    DropdownModule
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,34 +17,34 @@
                     <div class="contact">
                         <div>
                             <label class="label">Name<sup><b>*</b></sup></label>
-                            <input type="text" formControlName="name" class="contactDetails" style="width: 35%;" placeholder="Enter Name" required>
+                            <input type="text" pInputText  formControlName="name" class="contactDetails" style="width: 35%; height: 20px;" placeholder="Enter Name" required>
                             <mat-slide-toggle formControlName="status" style="margin-left: 2%;">Active</mat-slide-toggle>
                         </div>
                         <div>
                             <label class="label">Phonenumber 1* : </label>
-                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter Phonenumber 1 " formControlName="phone">
+                            <input type="text" pInputText  style="width: 35%; height: 20px;" class="contactDetails" placeholder="Enter Phonenumber 1 " formControlName="phone">
                         </div>
                         <div>
                             <label class="label">Phonenumber 2 </label>
-                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter Phonenumber 2 " formControlName="phone1">
+                            <input type="text" pInputText  style="width: 35%; height: 20px;" class="contactDetails" placeholder="Enter Phonenumber 2 " formControlName="phone1">
                         </div>
 
                         <div>
                             <label class="label">E-mail 1 </label>
-                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter E-mail 1" formControlName="email">
+                            <input type="text" pInputText  style="width: 35%; height: 20px;" class="contactDetails" placeholder="Enter E-mail 1" formControlName="email">
                         </div>
                         <div>
                             <label class="label">E-mail 2</label>
-                            <input type="text" style="width: 35%;" class="contactDetails" placeholder="Enter E-mail 2" formControlName="email1">
+                            <input type="text" pInputText  style="width: 35%; height: 20px;" class="contactDetails" placeholder="Enter E-mail 2" formControlName="email1">
                         </div>
                         <div style="display: flex; flex-direction: row;  align-items: center">
 
                             <label class="label">Address 1 <sup><b>*</b></sup></label>
-                            <textarea formControlName="address" style="height: 75px; resize: horizontal; width: 36%;"></textarea>
+                            <textarea formControlName="address" pInputTextarea  style="height: 75px; resize: horizontal; width: 36%;"></textarea>
                         </div>
                         <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
                             <label class="label">Address 2 </label>
-                            <textarea style="height: 75px; resize: horizontal; width: 36%" formControlName="address1">
+                            <textarea style="height: 75px; resize: horizontal; width: 36%" pInputTextarea formControlName="address1">
                             </textarea>
                         </div>
 
@@ -59,17 +59,17 @@
 
                         <div style="display: flex;">
                             <label class="label">Relation Tags</label>
-                            <select [(ngModel)]="RelationTags" style="height: 3%; margin-left: 6%;" formControlName="reltag">
+                            <select [(ngModel)]="RelationTags" pInputText style="height: 44px; margin-left: 6%;" formControlName="reltag">
                                 <option>---select---</option>
                                 <option *ngFor="let relt of rtag" [value]="relt.tag_name">{{ relt.tag_name }}</option>
                             </select>
                             <div >
-                            <input type="text" #test style="border: 1px solid transparent; width: 75%;" value="{{Relation}}'s-{{RelationTags}}" readonly formControlName="relname">
+                            <input type="text" pInputText  #test style="border: 1px solid transparent; width: 75%; height: 44px;" value="{{Relation}}'s-{{RelationTags}}" readonly formControlName="relname">
                             </div>
                         </div>
                         <div>
                             <label class="label">Folder : </label>
-                            <select formControlName="folder" style="height: 3%; margin-left: 6%;">
+                            <select formControlName="folder" style="height: 45px; margin-left: 6%;margin-top: 6px;" pInputText>
                                 <option>--select--</option>
                                 <option *ngFor="let folder of foldername" [value]="folder.tag_name">{{ folder.tag_name }}</option>
                             </select>
@@ -81,7 +81,7 @@
                                 <mat-chip-grid #taglist formControlName="tags">
                                     <div style="display: flex; flex-direction: column; height: auto; justify-content: center; align-items: center;">
                                     <div style="display: flex;">
-                                        <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style= "border: 1px solid black;margin-left: -54px;" />
+                                        <input placeholder="Add Tags" pInputText [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style= "border: 1px solid black;margin-left: -54px; height: 20px;" />
                                         <button type="button" id="newTags" class="btn btn-primary"
                                                 data-toggle="modal" data-target="#createtagspopup">New</button>
                                     </div><br>
