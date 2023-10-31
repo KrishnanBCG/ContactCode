@@ -1,5 +1,5 @@
-import { Component,EventEmitter,Input,OnInit, Output} from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component,EventEmitter,OnInit, Output} from '@angular/core';
+import { ApiserviceService } from '../apiservice.service';
 
 
 
@@ -11,43 +11,33 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SidenavbarComponent implements OnInit {
 
-  @Output() sideNavToggled = new EventEmitter<boolean>()
-  menu :boolean =false;
-  notSave:boolean = true;
+@Output() sideNavToggled = new EventEmitter<boolean>()
+menu :boolean =false;
+foldername:any;
+rtag:any;
 
-  saveProcess(){
-    this.notSave = false;
+  constructor(private api:ApiserviceService) {
   }
+
+  ngOnInit(): void {
+    this.folderName();
+    this.relationtagName();
+   }
+
 
 SideNavToggled(){
   this.menu = !this.menu
   this.sideNavToggled.emit(this.menu);
 }
 
-
-  
-ngOnInit(): void { }
-
-//phonenumber dynamicinput
-
-Phonenumber:FormGroup;
-
-constructor(private fb:FormBuilder){
-  this.Phonenumber=this.fb.group({
-    Phonenumber : this.fb.array([])
+folderName(){
+  this.api.folder().subscribe((res) => {
+    this.foldername = res.data
+  });
+}
+relationtagName(){
+  this.api.rtags().subscribe((res) => {
+    this.rtag = res.data
   })
 }
-
-get phonenumber(){
-  return this.Phonenumber.get('Phonenumber') as FormArray;
-}
-
-addNewInput(){
-  this.phonenumber.push(this.fb.control(''))
-}
-removeInput(index: number) {
-  this.phonenumber.removeAt(index);
-}
-
-
 }

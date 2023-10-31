@@ -1,14 +1,15 @@
-<div class="modal" id="contact">
+   
+   <div id="contact" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <form [formGroup]="userform" (ngSubmit)="usersubmit()">
+            <form [formGroup]="userform" >
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title" id="contacttitlepopup">
                         <b>Create Contact</b>
                     </h4>
-                    <button type="button" class="btn-close" data-dismiss="modal"></button>
+                    <button type="button" data-dismiss="modal" class="btn-close" >
+                    </button>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
@@ -17,7 +18,7 @@
                         <div>
                             <label class="label">Name<sup><b>*</b></sup></label>
                             <input type="text" formControlName="name" class="contactDetails" placeholder="Enter Name" required>
-                            <mat-slide-toggle formControlName="status">Active</mat-slide-toggle>
+                            <mat-slide-toggle formControlName="status" style="margin-left: 15px;">Active</mat-slide-toggle>
                         </div>
                         <div>
                             <label class="label">Phonenumber 1* : </label>
@@ -36,46 +37,39 @@
                             <label class="label">E-mail 2</label>
                             <input type="text" class="contactDetails" placeholder="Enter E-mail 2" formControlName="email1">
                         </div>
-                        <div>
+                        <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
 
                             <label class="label">Address 1 <sup><b>*</b></sup></label>
-                            <textarea style="height: 75px; width: 200px;" formControlName="address"></textarea>
+                            <textarea formControlName="address" style="height: 75px; resize: horizontal; width: 161px;"></textarea>
                         </div>
-                        <div>
+                        <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
                             <label class="label">Address 2 </label>
-                            <textarea style="height: 75px; width: 200px;"formControlName="address1">
+                            <textarea style="height: 75px; resize: horizontal; width: 161px;" formControlName="address1">
                             </textarea>
                         </div>
 
                         <div>
                             <label class="label">Relation </label>
-                            <input list="relation">
-                            <datalist id="relation">
-                                <option value="Gopi"></option>
+                            <input list="createrelation" [(ngModel)]="Relation" formControlName="relcontact">
+                            <datalist id="createrelation" >
+                                <option *ngFor="let rel of relationCon" values={{rel.contact_name}}>{{rel.Contact_id}} - {{rel.contact_phone}}</option>
                               </datalist>
                         </div>
 
 
-                        <div>
+                        <div style="display: flex;">
                             <label class="label">Relation Tags</label>
-                            <select>
+                            <select [(ngModel)]="RelationTags" style="height: 21px;" formControlName="reltag">
                                 <option>---select---</option>
-                                <option>Brother</option>
-                                <option>sister</option>
+                                <option *ngFor="let relt of rtag" [value]="relt.tag_name">{{ relt.tag_name }}</option>
                             </select>
-                            <input type="text" style="border: 1px solid transparent;"   readonly>
+                            <div >
+                            <input type="text" #test style="border: 1px solid transparent;" value="{{Relation}}'s-{{RelationTags}}" readonly formControlName="relname">
+                            </div>
                         </div>
-<!-- 
-                        <div>
-                            <label class="label"> Active/InActive Status * </label>
-                            <input type="radio" value="Y" name="status" checked formControlName="status">
-                            <label> Yes </label>
-                            <input type="radio" name="status" value="N" style="margin-left: 30px;" formControlName="status">
-                            <label> No </label>
-                        </div> -->
                         <div>
                             <label class="label">Folder : </label>
-                            <select formcontrolname="folder">
+                            <select formControlName="folder">
                                 <option>--select--</option>
                                 <option *ngFor="let folder of foldername" [value]="folder.tag_name">{{ folder.tag_name }}</option>
                             </select>
@@ -88,6 +82,8 @@
                                     <div style="display: flex; flex-direction: column; height: auto; justify-content: center; align-items: center;">
                                     <div style="display: flex; width: 200px;">
                                         <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style="width:100px; border:1px solid black" />
+                                        <button type="button" id="newTags" class="btn btn-primary"
+                                                data-toggle="modal" data-target="#createtagspopup">New</button>
                                     </div><br>
                                     <div style="display: flex; width: 450px; flex-wrap: wrap;">
                                         <mat-chip-row *ngFor="let tag of Tags; let i = index " [removable]="removable" (removed)="remove(tag)" >
@@ -104,13 +100,9 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn " id="contactsavebutton" (click)="createcontactsavepopup()" *ngIf="saveshowSave" >
+                    <button type="submit" (click)="usersubmit()" class="btn " id="contactsavebutton" (click)="createcontactsavepopup()">
                         <i class="fa-regular fa-floppy-disk"></i>
                         Save
-                    </button>
-                    <button type="Update" class="btn " id="contactsavebutton" (click)="createcontactsavepopup()" *ngIf="detailsshowSave" >
-                        <i class="fa-regular fa-floppy-disk"></i>
-                        Update
                     </button>
                 </div>
             </form>

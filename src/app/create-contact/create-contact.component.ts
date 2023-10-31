@@ -1,6 +1,5 @@
-import { Component ,Input,OnInit} from '@angular/core';
+import { Component ,ElementRef,Input,OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Validators } from 'ngx-editor';
 import Swal from 'sweetalert2';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -13,6 +12,7 @@ import { ModalService } from '../modal.service';
   templateUrl: './create-contact.component.html',
   styleUrls: ['./create-contact.component.css']
 })
+
 export class CreateContactComponent {
   values=[]
   visible = true;
@@ -22,9 +22,13 @@ export class CreateContactComponent {
   Tags: string[] = [];
   foldername:any;
   allcontact:any;
-  @Input() saveshowSave : boolean = true;
-  @Input() detailsshowSave : boolean = true;
-
+  isModalOpen = true;
+  getparamid: any;
+  singlecontact:any;
+  RelationTags=[];
+  Relation=[];
+  rtag: any;
+  slideToggleValue: boolean = true;
 
 userform= new FormGroup ({
   'name' : new FormControl(''),
@@ -34,22 +38,39 @@ userform= new FormGroup ({
   'email1' : new FormControl(''),
   'address' : new FormControl(''),
   'address1' : new FormControl(''),
-  'status': new FormControl(''),
+  'status': new FormControl('Y'),
   'folder' : new FormControl(''),
-  'tags' : new FormControl('')
+  'tags' : new FormControl(''),
+  'reltag': new FormControl(''),
+  'relname': new FormControl(''),
+  'relcontact':new FormControl('')
 })
 
+
+
+@ViewChild('test') testElement! :ElementRef;
+  relationCon: any;
+
+
 usersubmit(){
+  const a = this.testElement.nativeElement.value
+  this.userform.get('relname')?.setValue(a)
+  if (this.userform.get('status')?.value) {
+    this.userform.get('status')?.setValue('Y');
+  } else {
+    this.userform.get('status')?.setValue('N');
+  } 
   if(this.userform.valid){
     this.api.createContact(this.userform.value).subscribe((res)=>{
       this.userform.reset();
     })
+    console.log(this.userform.value);
   }
 }
 
 constructor(private http:HttpClient,
   private api:ApiserviceService,
-  private modal:ModalService){}
+  public modal:ModalService){}
 
 //--------------------------------------- success popup ---------------------------------------
 
@@ -59,20 +80,25 @@ createcontactsavepopup(){
 }
 
 
-// --------------------------------------------------------------------------------------------
-openModal(id:any){
-this.modal.openModal(id);
+// -------------------------------------------------------------------------------------------
+
+  ngOnInit(): void {
+    this.api.folder().subscribe((res) => {
+      this.foldername = res.data
+    });
+    this.getAllContact();
+
+    this.api.rtags().subscribe((res) => {
+      this.rtag = res.data
+  })
+
+  this.api.relcontact().subscribe((res)=>{
+    this.relationCon = res.data
+  })
 }
 
-ngOnInit(): void {
-  this.api.folder().subscribe((res)=>{
-    this.foldername = res.data
-});
-this.getAllContact();
-}
 
-
-//------------------------------POPUP Process---------------------------------------
+//------------------------------POPUP Process------------------------------------------------
   public items =[
 
   ]
@@ -102,6 +128,16 @@ getAllContact(){
   this.api.getAllContact().subscribe((res)=>{
     this.allcontact = res.data
   });
+}
+
+closemodal(){
+  this.isModalOpen= false;
+}
+
+getSingle(contact_Id:any){
+  this.api.getSingleCotact(contact_Id).subscribe((res)=>{
+    this.singlecontact = res.data
+  })
 }
 
 }

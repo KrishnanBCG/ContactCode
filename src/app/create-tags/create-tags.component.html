@@ -1,8 +1,8 @@
 <!-- The Modal -->
 
 <div class="modal fade" id="createtagspopup">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="width: 80%;margin-left: 12%;">
+    <div class="modal-dialog modal-lg" style="margin-top: 10%; border-radius: 20px; width: 30%;">
+        <div class="modal-content" style="width: 134%; margin-left: -19%; background-color: #EBE4D1;">
             <form [formGroup]="createtag" (ngSubmit)="tagsubmit()">
                 <!-- Modal Header -->
                 <div class="modal-header">
@@ -31,7 +31,7 @@
                                 <div style="display: flex; justify-content: center; flex-direction: column; height: auto; align-items:center ;">
                                 <div style="display: flex; width: 400px;">
                                     <label class="label"> Tags : </label>
-                                    <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style="width:70px; border:1px solid black" />
+                                    <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" style="width:70px; border:1px solid black; background-color: white; " />
                                 </div>
                                 <div style="display: flex; width: 450px; flex-wrap: wrap;">
                                     <mat-chip-row *ngFor="let tag of Tags; let i = index " [removable]="removable" (removed)="remove(tag)" >
@@ -49,7 +49,7 @@
                 <div class="modal-footer">
 
                     <button type="submit" (click)="createtagspopup()" class="btn btn-primary"
-                        style="margin-right: 47%;">
+                        style="margin-right: 40%;">
                         <i class="fa-solid fa-floppy-disk fa-beat"></i> Save
                     </button>
                 </div>

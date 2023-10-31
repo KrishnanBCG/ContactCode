@@ -21,6 +21,8 @@ export class CreateTagsComponent implements OnInit {
   removable = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   Tags: string[] = [];
+  foldername:any;
+  rtag:any;
 
 
 
@@ -43,7 +45,11 @@ createtag = new FormGroup({
 })
 
 tagsubmit(){
-  if(this.createtag.valid){ this.api.createtag(this.createtag.value).subscribe((res)=>{}) }
+  if(this.createtag.valid){ 
+    this.api.createtag(this.createtag.value).subscribe((res)=>{
+    })
+  this.createtag.reset();
+  }
 }
 
 add(event: MatChipInputEvent): void {
@@ -65,7 +71,16 @@ remove(tag: string): void {
   }
 }
 
-
+folderName(){
+  this.api.folder().subscribe((res) => {
+    this.foldername = res.data
+  });
+}
+relationtagName(){
+  this.api.rtags().subscribe((res) => {
+    this.rtag = res.data
+  })
+}
 //-------------------------------Popup Process---------------------------------------------
   public items =[
   ]

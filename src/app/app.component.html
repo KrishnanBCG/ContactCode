@@ -39,7 +39,7 @@
             <ng-container matColumnDef="getdetails">
               <th mat-header-cell *matHeaderCellDef> Get Details </th>
               <td mat-cell *matCellDef="let element"> 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contact" >Details</button> 
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Update" (click)="getId(element.contact_id)" >Details</button> 
               </td>
               </ng-container>
 
@@ -54,4 +54,116 @@
   </main>
 </div>
 
-<app-app-create-contact [detailsshowSave]="isSave"></app-app-create-contact>
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+<div id="Update" class="modal">
+  <div class="modal-dialog">
+  <div class="modal-content" style="width: 110%;">
+      <form [formGroup]="userform" (ngSubmit)="userupdate()">
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title" id="contacttitlepopup">
+                  <b>Update Contact</b>
+              </h4>
+              <button type="button" data-dismiss="modal" class="btn-close" >
+              </button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+
+              <div class="contact">
+                  <div>
+                      <label class="label">Name<sup><b>*</b></sup></label>
+                      <input type="text" formControlName="name" class="contactDetails" placeholder="Enter Name" required>
+                      <!-- <mat-slide-toggle  >Active</mat-slide-toggle> -->
+                      <label class="switch" style="margin-left: 50px;"><input type="checkbox" [checked]="checked" formControlName="status"><span class="slider round"></span></label>
+                    </div>
+                  <div>
+                      <label class="label">Phonenumber 1* : </label>
+                      <input type="text" class="contactDetails" placeholder="Enter Phonenumber 1 " formControlName="phone">
+                  </div>
+                  <div>
+                      <label class="label">Phonenumber 2 </label>
+                      <input type="text" class="contactDetails" placeholder="Enter Phonenumber 2 " formControlName="phone1">
+                  </div>
+
+                  <div>
+                      <label class="label">E-mail 1 </label>
+                      <input type="text" class="contactDetails" placeholder="Enter E-mail 1" formControlName="email">
+                  </div>
+                  <div>
+                      <label class="label">E-mail 2</label>
+                      <input type="text" class="contactDetails" placeholder="Enter E-mail 2" formControlName="email1">
+                  </div>
+                  <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
+
+                    <label class="label">Address 1 <sup><b>*</b></sup></label>
+                    <textarea formControlName="address" style="height: 75px; resize: horizontal; width: 161px;"></textarea>
+                </div>
+                <div style="display: flex; flex-direction: row; height: 100px; align-items: center">
+                    <label class="label">Address 2 </label>
+                    <textarea style="height: 75px; resize: horizontal; width: 161px;" formControlName="address1">
+                    </textarea>
+                </div>
+
+                  <div>
+                      <label class="label">Relation </label>
+                      <input list="relation" [(ngModel)]="Relation" id="test" formControlName="reldummy"> 
+                      <input type="text" formControlName="relcontact" style="display: none;">
+                      <datalist id="relation" #relation>
+                          <option *ngFor="let relc of relationContact" [value]="relc.contact_name" [attr.data-ContactId]="relc.Contact_id">{{relc.Contact_id}} - {{relc.contact_phone}}</option>
+                      </datalist>
+                  </div>
+
+                  <div style="display: flex;">
+                      <label class="label">Relation Tags</label>
+                      <select formControlName="rtagValue" style="height: 21px;" [(ngModel)]="RelationTags">
+                          <option>---select---</option>
+                          <option *ngFor="let tag of rtag" [value]="tag.tag_name">{{ tag.tag_name }}</option>
+                      </select>
+                      <div>
+                        <input type="text" #testing style="border: 1px solid transparent;" value="{{Relation}}'s {{RelationTags}}" readonly formControlName="relname">
+                      </div>
+                  </div>
+                  <div>
+                      <label class="label">Folder : </label>
+                      <select formControlName="folderValue">
+                          <option>--select--</option>
+                          <option *ngFor="let folder of foldername" [value]="folder.tag_name">{{ folder.tag_name }}</option>
+                      </select>
+                  </div>
+
+                  <div id="contacttags" style="display: flex; flex-direction: column;">
+                      <div style="display: flex;">
+                          <label style="display: inline-block; width: 200px;" class="label"> Tags : <sup><b>*</b></sup></label>
+                          <mat-chip-grid #taglist  formControlName="tags" id="chip" >
+                              <div style="display: flex; flex-direction: column; height: auto; justify-content: center; align-items: center;">
+                              <div style="display: flex; width: 200px;">
+                                  <input placeholder="Add Tags" [matChipInputFor]="taglist"  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" value="" style="width:100px; border:1px solid black" />
+                                  <button type="button" id="newTags" class="btn btn-primary"
+                                  data-toggle="modal" data-target="#createtagspopup">New</button>
+                                </div><br>
+                              <div style="display: flex; width: 450px; flex-wrap: wrap;">
+                                  <mat-chip-row *ngFor="let tag of Tags; let i = index " [removable]="removable" (removed)="remove(tag)" >
+                                          {{ tag }}
+                                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                  </mat-chip-row>
+                              </div>
+                          </div>
+                          </mat-chip-grid>
+                      </div>
+                  </div>
+          </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="submit" class="btn " id="contactsavebutton"  (click)="createcontactsavepopup()">
+                  <i class="fa-regular fa-floppy-disk"></i>
+                  Update
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
+</div>
+<app-create-tags></app-create-tags>
